@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+		<title>F</title>
+
+    	<!-- Load style sheet -->
+		<link href="css/index.css" media="screen" rel="stylesheet" type="text/css">
+
+    	<!-- Library code -->
+		
+ 		<!-- Load the GUI rendering library code. -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.6.1/dat.gui.min.js"></script>
+		<!-- Load the keyboard specific code --> 
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/keyboardjs/2.3.3/keyboard.min.js"></script>
+		<!-- Load the gameloopc code --> 
+		<script type="text/javascript" src="/mainloop/mainloop.min.js"></script>
+	 	<!-- Load socket.io client side contents. -->
+		<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+        <!-- CreateJS libraries -->
+        <script src="https://code.createjs.com/easeljs-0.8.2.min.js"></script>
+        <script src="https://code.createjs.com/preloadjs-0.6.2.min.js"></script>
+	 	
+    	<!-- Game code -->
+
+		<!-- Load the common game code. -->
+		<script type="text/javascript" src="js/common/core.js"></script>
+		<script type="text/javascript" src="js/common/avatar.js"></script>
+		<!-- Finally, Load the game client code. -->	
+		<script type="text/javascript" src="js/client/client.js"></script>		
+		<script type="text/javascript" src="js/client/init.js"></script>
+
+	</head>
+
+	<body id="body">
+
+		<canvas id="viewport">
+		</canvas>
+
+	</body>
+
+</html>
