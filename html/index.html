@@ -12,7 +12,7 @@
  		<!-- Load the GUI rendering library code. -->
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.6.1/dat.gui.min.js"></script>
 		<!-- Load the keyboard specific code --> 
-		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/keyboardjs/2.3.3/keyboard.min.js"></script>
+		<script type="text/javascript" src="/js/lib/threex.keyboardstate.js"></script>
 		<!-- Load the gameloopc code --> 
 		<script type="text/javascript" src="/mainloop/mainloop.min.js"></script>
 	 	<!-- Load socket.io client side contents. -->
@@ -24,18 +24,36 @@
     	<!-- Game code -->
 
 		<!-- Load the common game code. -->
-		<script type="text/javascript" src="js/common/core.js"></script>
-		<script type="text/javascript" src="js/common/avatar.js"></script>
+		<script type="text/javascript" src="/js/common/globals.js"></script>
+		<script type="text/javascript" src="/js/common/functions.js"></script>
+		<script type="text/javascript" src="/js/common/core.js"></script>
+		<script type="text/javascript" src="/js/common/avatar.js"></script>
 		<!-- Finally, Load the game client code. -->	
-		<script type="text/javascript" src="js/client/client.js"></script>		
-		<script type="text/javascript" src="js/client/init.js"></script>
+		<script type="text/javascript" src="/js/client/client.js"></script>	
 
 	</head>
 
-	<body id="body">
+	<body id="body" oncontextmenu="return false;">
 
-		<canvas id="viewport">
+		<canvas id="canvas">
 		</canvas>
+        
+        <div id="intro-wrapper">
+            <div id="title">Server</div>
+            
+            <div id="options">
+                <input id="nickname" type="text" placeholder="Enter Nickname">
+            </div>
+            
+            <div id="loader"></div>
+            
+            <div id="progress"></div>
+            
+            <div id="start-button-container">
+                <button id="start-button">Connect tot Server</button>
+            </div>
+            
+        </div>
 
 	</body>
 

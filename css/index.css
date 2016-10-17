@@ -1,26 +1,113 @@
-html {
-	background: #212121; 
-	color: #fff; 
-	font-family: Helvetica;
-	margin: 0; 
-	padding: 0;
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    background: #212121;
+    color: #fff;
+    font-family: Helvetica;
     width: 100%;
     height: 100%;
+    overflow: hidden;
 }
 
-body {
+#intro-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+}
+
+#intro-wrapper #title {
+    display: block;
     position: absolute;
-    top: 10px;
-    right: 10px;
-    bottom: 10px;
-    left: 10px;
-    margin: 0;
+    text-align: center;
+    font-size: 3em;
+    top: 50%;
+    width: 100%;
+    margin-top: -200px;
 }
 
-#viewport {
-	border:solid 1px #333;
-	margin: auto;
-	left:0; right:0; top:0; bottom:0;
-	position: absolute;
-	z-index:100;
+#intro-wrapper #options {
+    display: block;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    width: 100%;
+    margin-top: -130px;
+}
+
+#options input {
+    height: 25px;
+    border: none;
+    border-radius: 10px;
+    margin: 5px;
+    padding: 0 10px;
+}
+
+#loader {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #3498db;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+#progress {
+    display: block;
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    width: 150px;
+    height: 150px;
+    margin: -72px 0 0 -75px;
+    text-align: center;
+    line-height: 150px;
+    font-size: 20px;
+    color: #ddd;
+}
+
+#start-button-container {
+    display: none;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+}
+
+#start-button-container #start-button {
+    padding: 8px 12px;
+    background-color: #e7e7e7;
+    border-color: #ccc;
+    color: #333;
+    -moz-user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: normal;
+    line-height: 1.4;
+    margin-bottom: 0;
+    padding: 0 12px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+#start-button-container #start-button:hover {
+    background-color: #cecece;
+    border-color: #adadad;
+    color: #333;
 }

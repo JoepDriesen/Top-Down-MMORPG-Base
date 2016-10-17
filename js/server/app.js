@@ -11,12 +11,15 @@ var port            = process.env.PORT || 4004,
     express         = require('express'),
     UUID            = require('node-uuid'),
 
-    verbose         = false,
+    debug           = false,
     http            = require('http'),
     app             = express(),
     server          = http.createServer(app),
 
-    game_server     = require(global.base_dir + 'js/server/server.js');
+    GameServer     = require(global.base_dir + 'js/server/server.js');
+
+var game_server = new GameServer( debug );
+game_server.start();
 
 
 
@@ -43,6 +46,7 @@ app.get('/', function (req, res) {
 app.use('/css', express['static'](global.base_dir + 'css/'));
 app.use('/js/common', express['static'](global.base_dir + 'js/common/'));
 app.use('/js/client', express['static'](global.base_dir + 'js/client/'));
+app.use('/js/lib', express['static'](global.base_dir + 'js/lib/'));
 app.use('/assets', express['static'](global.base_dir + 'assets/'));
 
 app.use('/mainloop/', express['static'](global.base_dir + 'node_modules/mainloop.js/build/'));
@@ -69,37 +73,30 @@ sio.use(function (socket, next) {
     
 });
 
-sio.sockets.on('connection', function (player) {
+sio.sockets.on( 'connection', function ( player ) {
 
-    // Generate a new UUID, looks something like
-    // 5b2ca132-64bd-4513-99da-90e838ca47d1
-    // and store this on their socket/connection
-    player.id = UUID();
-    player.userid = player.id;
-
-    // Tell the player they connected, giving them their id
-    player.emit('connected', { id: player.userid });
+    game_server.join( player, player.request._query.nickname )
 
     // Useful to know when someone connects
-    console.log('\t :: socket.io\t:: player ' + player.userid + ' connected');
+    console.log( '\t :: socket.io\t:: player ' + player.userid + ' connected' );
 
 
     // Now we want to handle some of the messages that clients will send.
     // They send messages here, and we send them to the game_server to handle.
-    player.on('message', function (m) {
+    player.on( 'message', function ( m ) {
 
-        game_server.onMessage(player, m);
+        game_server.onMessage( player, m );
 
-    }); //player.on message
+    } ); //player.on message
 
     // When this client disconnects, we want to tell the game server
     // about that as well, so it can remove them from the game they are
     // in, and make sure the other player knows that they left and so on.
-    player.on('disconnect', function () {
+    player.on( 'disconnect', function () {
 
         // Useful to know when soomeone disconnects
-        console.log('\t :: socket.io\t:: player ' + player.userid + ' disconnected');
+        console.log( '\t :: socket.io\t:: player ' + player.userid + ' disconnected' );
 
-    }); //player.on disconnect
+    } ); //player.on disconnect
 
 }); //sio.sockets.on connection
